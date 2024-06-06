@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FaqComponent } from './faq/faq.component';
@@ -13,6 +12,7 @@ import { PortfolioComponent } from './portfolio/portfolio.component';
 import { BlogResourcesComponent } from './blog-resources/blog-resources.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { ButtonModule } from 'primeng/Button';
 
 @NgModule({
   declarations: [
@@ -32,6 +32,7 @@ import { FooterComponent } from './footer/footer.component';
     BrowserModule,
     AppRoutingModule,
     ButtonModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
