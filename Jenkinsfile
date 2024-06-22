@@ -6,7 +6,6 @@ pipeline {
     stages {
         stage('Git Clone') {
             steps {
-                cleanWs()
                 sh '''
                 cd hut-mail-server
                 mvn -v
