@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hut.emailserver.model.EmailData;
 import com.hut.emailserver.service.EmailService;
+import com.hut.emailserver.service.model.EmailResponse;
 
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
@@ -21,10 +22,8 @@ public class EmailController {
 
 	@SneakyThrows
 	@PostMapping("/sendEmail")
-	public String sendEmail(@RequestBody EmailData data) {
-		emailService.sendEmail(data);
-		return "Success";
-
+	public EmailResponse sendEmail(@RequestBody EmailData data) {
+		return emailService.sendEmail(data);
 	}
 
 }
