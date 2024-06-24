@@ -42,9 +42,10 @@ pipeline {
 		stage('Build Docker Image') {
 		steps {
 			script {
+				retry(3) {
 				def imageName = "${IMAGE_NAME_BASE}:${IMAGE_VERSION}"
 				docker.build(imageName, "--platform ${PLATFORM} .")
-
+				}
 			}
 		}
 	}
