@@ -90,7 +90,6 @@ pipeline {
         }
         failure {
             echo "Pipeline failed."
-            currentBuild.result = 'FAILURE'
         }
     }
 }
