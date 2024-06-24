@@ -69,5 +69,18 @@ pipeline {
 				}
 			}
 		}
+	stage('Commit New Version to GIT') {
+		steps {
+			script {
+                              sh '''
+			      git config user.email "gkdigitalhut@gmail.com"
+	                      git config user.name "GK Digital Hut"
+		              git add ${VERSION_FILE}
+		              git commit -m "Incrementing Docker image version"
+		              git push origin develop
+		              '''
+				}
+			}
+		}
 	}
 }
