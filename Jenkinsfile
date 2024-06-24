@@ -74,11 +74,13 @@ pipeline {
 		steps {
 			script {
                               sh '''
+			      git branch
 			      git config user.email "gkdigitalhut@gmail.com"
 	                      git config user.name "GK Digital Hut"
 		              git add ${VERSION_FILE}
 		              git commit -m "Incrementing Docker image version"
-		              git push origin develop
+		              git fetch origin
+		              git push -u origin develop
 		              '''
 				}
 			}
