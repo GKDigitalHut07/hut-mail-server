@@ -6,7 +6,6 @@ pipeline {
     environment {
         CONTAINER_NAME = 'email-server-container'
         IMAGE_NAME_BASE = 'hut-email-server'
-        IMAGE_VERSION = ''  // Initialize IMAGE_VERSION
         PLATFORM = 'linux/amd64/v3'
         GIT_CREDENTIALS_ID = 'gkgithub'  // Jenkins credential ID for Git authentication
     }
@@ -29,8 +28,8 @@ pipeline {
                     echo "Git commit hash: ${gitCommitHash}"
 
                     // Use the Git commit hash as the IMAGE_VERSION or customize as needed
-                    env.IMAGE_VERSION = gitCommitHash
-                    echo "IMAGE_VERSION set to: ${env.IMAGE_VERSION}"
+                    env.image_version = gitCommitHash
+                    echo "IMAGE_VERSION set to: ${env.image_version}"
                 }
             }
         }
@@ -39,7 +38,7 @@ pipeline {
             steps {
                 script {
                     retry(3) { // Retry the following block up to 3 times on failure
-                        def imageName = "${IMAGE_NAME_BASE}:${env.IMAGE_VERSION}"
+                        def imageName = "${IMAGE_NAME_BASE}:${env.image_version}"
                         def dockerBuildArgs = "--platform ${PLATFORM} ."
                         docker.build(imageName, dockerBuildArgs)
                     }
@@ -75,8 +74,8 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: "${GIT_CREDENTIALS_ID}", usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
                         // Tag the Git repository with IMAGE_VERSION
                         sh """
-                        git tag -a ${IMAGE_VERSION} -m 'Tagging version ${IMAGE_VERSION}'
-                        git push origin ${IMAGE_VERSION}
+                        git tag -a ${env.image_version} -m 'Tagging version ${env.image_version}'
+                        git push origin ${env.image_version}
                         """
                     }
                 }
