@@ -74,7 +74,7 @@ pipeline {
 		steps {
 			script {
                               sh '''
-			      git branch
+			      git checkout develop
 			      git config user.email "gkdigitalhut@gmail.com"
 	                      git config user.name "GK Digital Hut"
 		              git add ${VERSION_FILE}
