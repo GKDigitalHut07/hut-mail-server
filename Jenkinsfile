@@ -61,7 +61,7 @@ pipeline {
             steps {
                 script {
                     def imageName = "${IMAGE_NAME_BASE}:${IMAGE_VERSION}"
-                    sh "docker run -d --name ${CONTAINER_NAME} ${imageName}"
+                    sh "docker run -d -p 10000:10000  --name ${CONTAINER_NAME} ${imageName}"
                 }
             }
         }
