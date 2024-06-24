@@ -30,6 +30,7 @@ pipeline {
 
                     // Use the Git commit hash as the IMAGE_VERSION or customize as needed
                     env.IMAGE_VERSION = gitCommitHash
+                    echo "IMAGE_VERSION set to: ${env.IMAGE_VERSION}"
                 }
             }
         }
@@ -38,7 +39,7 @@ pipeline {
             steps {
                 script {
                     retry(3) { // Retry the following block up to 3 times on failure
-                        def imageName = "${IMAGE_NAME_BASE}:${IMAGE_VERSION}"
+                        def imageName = "${IMAGE_NAME_BASE}:${env.IMAGE_VERSION}"
                         def dockerBuildArgs = "--platform ${PLATFORM} ."
                         docker.build(imageName, dockerBuildArgs)
                     }
