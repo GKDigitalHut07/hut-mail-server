@@ -7,7 +7,6 @@ pipeline {
         CONTAINER_NAME = 'email-server-container'
         IMAGE_NAME_BASE = 'hut-email-server'
         PLATFORM = 'linux/amd64/v3'
-        GIT_CREDENTIALS_ID = 'gkgithub'  // Jenkins credential ID for Git authentication
     }
 
     stages {
@@ -71,7 +70,7 @@ pipeline {
             steps {
                 script {
                     // Configure git credentials
-                    withCredentials([usernamePassword(credentialsId: "${GIT_CREDENTIALS_ID}", usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
+                    withCredentials([usernamePassword(credentialsId: "gkgithub", usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
                         // Tag the Git repository with IMAGE_VERSION
                         sh """
                         git tag -a ${env.image_version} -m 'Tagging version ${env.image_version}'
