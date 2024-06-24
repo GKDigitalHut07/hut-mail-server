@@ -74,7 +74,7 @@ pipeline {
                         // Tag the Git repository with IMAGE_VERSION
                         sh """
                         git tag -a ${env.image_version} -m 'Tagging version ${env.image_version}'
-                        git push origin ${env.image_version}
+                        git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/GKDigitalHut07/hut-mail-server.git ${env.image_version}
                         """
                     }
                 }
