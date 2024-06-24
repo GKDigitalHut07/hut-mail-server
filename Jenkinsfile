@@ -73,6 +73,7 @@ pipeline {
 	stage('Commit New Version to GIT') {
 		steps {
 			script {
+			      withCredentials([usernamePassword(credentialsId: "gkgithub", usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
                               sh '''
 			      git checkout develop
 			      git config user.email "gkdigitalhut@gmail.com"
@@ -80,9 +81,10 @@ pipeline {
 		              git add ${VERSION_FILE}
 		              git commit -m "Incrementing Docker image version"
 		              git fetch origin
-		              git push -u origin develop
+		              git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/GKDigitalHut07/hut-mail-server.git HEAD:develop
 		              '''
 				}
+			    }
 			}
 		}
 	}
