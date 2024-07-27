@@ -1,0 +1,35 @@
+<!-- <div class="layout">
+    <div [ngClass]="{'left-sidebar':sidebar}"></div>
+    <div class="right-sidebar"> -->
+<div class="top-menubar">
+  <div class="menu-left">
+    <i class="pi pi-align-justify" (click)="openSideBar()"></i>
+    <h4 style="margin: 0%;padding-left: 10px;">GKDIGITALHUT</h4>
+  </div>
+  <hr class="separator">
+  <div class="menu-right">
+    <!-- <i class="pi pi-search menu-align" *ngIf="!showSearchBox" (click)="toggleSearchBox()"></i> -->
+    <div class="search-container">
+      <button *ngIf="!showSearchBox" pButton type="button" icon="pi pi-search" (click)="toggleSearchBox()"></button>
+      <div *ngIf="showSearchBox" [@openClose]="showSearchBox ? 'open' : 'closed'" class="search-box">
+        <p-inputGroup>
+          <input type="text" pInputText [(ngModel)]="searchText" (keyup.enter)="navigateToSection()" placeholder="Search for section" />
+          <button type="button" pButton icon="pi pi-search" (click)="navigateToSection()"></button>
+        </p-inputGroup>
+      </div>
+    </div>
+    
+    
+    
+    <!-- <input pInputText type="text" [(ngModel)]="query" placeholder="Search for section">
+              <button pButton type="button" label="Search" (click)="onSearch()"></button> -->
+
+
+    <!-- <i class="pi pi-search menu-align"></i> -->
+    <i class="pi pi-bell menu-align"></i>
+    <p-avatar icon="pi pi-user" styleClass="mr-2" [style]="{ 'background-color': 'white', color: '#1a2551' }" />
+  </div>
+</div>
+<!-- <div class="body-content"></div>
+    </div>
+  </div> -->

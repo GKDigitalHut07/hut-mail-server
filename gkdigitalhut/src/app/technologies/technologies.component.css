@@ -1,0 +1,25 @@
+.card {  
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: row;
+    max-width: 100%;
+    overflow:scroll;
+    
+}
+p{
+    min-width: 30%;
+}
+
+@media (max-width:900px) {
+    p{
+        min-width:50%
+    }
+}
+
+.technologies{
+    background: var(--surface-card);
+    padding: 2rem;
+    background-color: rgb(241, 240, 235);
+    color:black;
+}
