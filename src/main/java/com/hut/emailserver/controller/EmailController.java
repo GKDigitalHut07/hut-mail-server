@@ -1,8 +1,11 @@
 package com.hut.emailserver.controller;
 
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hut.emailserver.model.EmailData;
@@ -25,5 +28,12 @@ public class EmailController {
 	public EmailResponse sendEmail(@RequestBody EmailData data) {
 		return emailService.sendEmail(data);
 	}
+	
+	@RequestMapping(value = "/sendEmail", method = RequestMethod.OPTIONS)
+    public ResponseEntity<Void> handleOptionsRequest() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Allow", "POST, OPTIONS"); // Specify allowed methods in response header
+        return ResponseEntity.ok().headers(headers).build();
+    }
 
 }

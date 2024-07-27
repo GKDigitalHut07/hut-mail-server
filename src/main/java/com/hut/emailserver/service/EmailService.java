@@ -8,11 +8,12 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
-import org.springframework.util.StringUtils;
 
 import com.hut.emailserver.model.EmailData;
 import com.hut.emailserver.service.model.EmailResponse;
 
+//import io.github.resilience4j.ratelimiter.RequestNotPermitted;
+//import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +24,7 @@ public class EmailService {
 
 	private final JavaMailSender javaMailSender;
 
+//	@RateLimiter(name = "sendEmail", fallbackMethod = "sendEmailFallback")
 	public EmailResponse sendEmail(EmailData data) {
 		EmailResponse response = new EmailResponse();
 		MimeMessage mimeMessage = javaMailSender.createMimeMessage();
@@ -62,13 +64,20 @@ public class EmailService {
 
 			}
 		} catch (MessagingException e1) {
-			response.setMessage("Internal server error, please contact system administrator or try after sometimes"); 
+			response.setMessage("Internal server error, please contact system administrator or try after sometimes");
 		} catch (Exception ex) {
-			response.setMessage("Error occured due to : "+ex.getMessage());
+			response.setMessage("Error occured due to : " + ex.getMessage());
 			response.setErrorDescription(ex.getStackTrace().toString());
 		}
 		return response;
 
 	}
+
+//	public EmailResponse sendEmailFallback(EmailData data, RequestNotPermitted exception) {
+//		EmailResponse response = new EmailResponse();
+//		response.setMessage("Rate limit exceeded. Please try again later.");
+//		response.setErrorDescription(exception.getMessage());
+//		return response;
+//	}
 
 }
