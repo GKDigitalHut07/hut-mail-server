@@ -1,8 +1,6 @@
 pipeline {
     agent any
-    tools {
-        maven 'Maven 3.9.8'
-    }
+    
     environment {
         CONTAINER_NAME = 'gkdigitlhut-container'
         IMAGE_NAME_BASE = 'gkdigitalhut-portal'
