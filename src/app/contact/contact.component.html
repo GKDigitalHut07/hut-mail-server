@@ -1,0 +1,46 @@
+<section class="contact">
+  <h1>Contact Us</h1>
+  <p>We'd love to hear from you! Whether you have a question about our services, need a quote, or just want to learn
+    more about how we can help your business, feel free to reach out to us.</p>
+  <div class="card flex justify-content-center" *ngIf="enableLoader">
+      <p-progressSpinner ariaLabel="loading" />
+  </div>
+  <p-toast />
+  <div class="card" *ngIf="!enableLoader">
+    <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+    <div class="item">
+      <p-floatLabel>
+        <input pInputText id="name" name="name" [(ngModel)]="request.name" [required]="true"/>
+        <label for="name">Name:</label>
+      </p-floatLabel>
+    </div>
+    <div class="item">
+      <p-floatLabel>
+        <input pInputText name="phoneNumber" id="phoneNumber"  [(ngModel)]="request.phoneNumber"/>
+        <label for="phoneNumber">Phone Number: (Optional)</label>
+      </p-floatLabel>
+    </div>
+    <div class="item">
+      <p-floatLabel>
+        <input pInputText id="email"  name="email"  [(ngModel)]="request.email" [required]="true"/>
+        <label for="email">Email:</label>
+      </p-floatLabel>
+    </div>
+    <div class="item">
+      <p-floatLabel>
+        <textarea id="message" name="message" rows="5" cols="30" [(ngModel)]="request.message" pInputTextarea>
+        </textarea>
+        <label for="message">Message:</label>
+      </p-floatLabel>
+    </div>
+    <div class="item">
+      <p-button type="submit">Submit</p-button>
+    </div>
+    </form>
+  </div>
+
+  <p>Alternatively, you can reach us at:</p>
+  <p>Email: <a href="mailto:gkdigitalhut&#64;gmail.com">gkdigitalhut&#64;gmail.com</a></p>
+  <p>Phone: (+91) 636-953-7963</p>
+  <p>Address: 30 Indira nagar, Hanumanpalli, Erode, Tamil Nadu, 638101</p>
+</section>

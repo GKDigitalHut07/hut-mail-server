@@ -1,0 +1,81 @@
+
+<div class="card">
+    <p-tabView styleClass="tabview-custom" [scrollable]="true">
+        <p-tabPanel>
+            <ng-template pTemplate="header">
+                <div class="flex align-items-center gap-2 tab-head">
+                    <span class="pi pi-user"></span>
+                    <span class="font-bold white-space-nowrap m-0">
+                        About Us
+                    </span>
+                </div>
+            </ng-template>
+            <p>GK Digital Hut is dedicated to delivering top-notch web development and hosting services. With a
+                team of experienced professionals, we leverage the latest technologies to build robust, scalable, and
+                secure web applications tailored to meet your business needs.</p>
+            <h4>Our Mission</h4>
+            <p>To empower businesses by providing innovative and reliable web solutions that drive growth and success.
+            </p>
+        </p-tabPanel>
+        <p-tabPanel header="Blog/Resources">
+            <ng-template pTemplate="header">
+                <div class="flex align-items-center gap-2 tab-head2">
+                    <span class="pi pi-bell"></span>
+                    <span class="font-bold white-space-nowrap m-0">
+                        Blog/Resources
+                    </span>
+                </div>
+                
+            </ng-template>
+            <app-blog-resources />
+        </p-tabPanel>
+        <p-tabPanel header="Portfolio">
+            <ng-template pTemplate="header">
+                <div class="flex align-items-center gap-2 tab-head">
+                    <span class="pi pi-chart-line"></span>
+                    <span class="font-bold white-space-nowrap m-0">
+                        Portfolio
+                    </span>
+                    
+                    <!-- <p-badge value="2" /> -->
+                </div>
+            </ng-template>
+            <app-portfolio />
+        </p-tabPanel>
+
+        <p-tabPanel header="Our Team">
+            <ng-template pTemplate="header">
+                <div class="flex align-items-center gap-2 tab-head">
+                    <span class="pi pi-users"></span>
+                    <span class="font-bold white-space-nowrap m-0">
+                        Our Team
+                    </span>
+                    
+                    <!-- <p-badge value="2" /> -->
+                </div>
+            </ng-template>
+            <div class="card flex justify-content-center overflow-x-auto">
+                <p-organizationChart 
+                    [value]="data" 
+                    selectionMode="multiple" 
+                    [(selection)]="selectedNodes" 
+                    [collapsible]="true">
+                        <ng-template let-node pTemplate="person">
+                            <div class="t-node">
+                                <img 
+                                    [src]="node.data.image" 
+                                    class="t-img" />
+                                <div class="t-name">
+                                    {{ node.data.name }}
+                                </div>
+                                <div>
+                                    {{ node.data.title }}
+                                </div>
+                            </div>
+                        </ng-template>
+                </p-organizationChart>
+            </div>
+        </p-tabPanel>
+        
+    </p-tabView>
+</div>

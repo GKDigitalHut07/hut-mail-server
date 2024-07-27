@@ -1,8 +1,0 @@
-.card{
-    padding:2rem;
-}
-
-:host ::ng-deep .p-panel{
-    border:0px;
-    font-size: small;
-}
